@@ -1,0 +1,107 @@
+---
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Val Town
+providerId: val-town
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Rate Limiting
+description: >-
+  Val Town enforces per-minute API request quotas by plan tier (1,000/min Free;
+  10,000/min Pro/Teams), daily run quotas, val creation rate limits, and
+  execution timeouts per run.
+sources:
+  - https://www.val.town/limits
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: API Requests (Free)
+    scope: user
+    metric: requests_per_minute
+    limit: 1000
+    timeFrame: minute
+  - name: API Requests (Pro/Teams)
+    scope: user
+    metric: requests_per_minute
+    limit: 10000
+    timeFrame: minute
+  - name: Val Creations (Free)
+    scope: user
+    metric: val_creations_per_minute
+    limit: 10
+    timeFrame: minute
+  - name: Val Creations (Pro/Teams)
+    scope: user
+    metric: val_creations_per_minute
+    limit: 60
+    timeFrame: minute
+  - name: Daily Runs (Free)
+    scope: user
+    metric: runs_per_day
+    limit: 100000
+    timeFrame: day
+  - name: Daily Runs (Pro)
+    scope: user
+    metric: runs_per_day
+    limit: 1000000
+    timeFrame: day
+  - name: Daily Runs (Business)
+    scope: user
+    metric: runs_per_day
+    limit: 5000000
+    timeFrame: day
+  - name: Execution Timeout (Free)
+    scope: user
+    metric: wall_clock_seconds_per_run
+    limit: 60
+    timeFrame: usage
+  - name: Execution Timeout (Pro/Teams)
+    scope: user
+    metric: wall_clock_seconds_per_run
+    limit: 600
+    timeFrame: usage
+  - name: Worker Idle Timeout
+    scope: user
+    metric: idle_seconds
+    limit: 10
+    timeFrame: usage
+  - name: Worker Absolute Ceiling
+    scope: user
+    metric: wall_clock_hours
+    limit: 6
+    timeFrame: usage
+  - name: Request Chain Depth
+    scope: user
+    metric: chain_depth
+    limit: 15
+    timeFrame: usage
+  - name: Incoming Email Size
+    scope: user
+    metric: email_size_mib
+    limit: 30
+    timeFrame: usage
+  - name: Val File Size
+    scope: user
+    metric: characters_per_val
+    limit: 80000
+    timeFrame: usage
+  - name: Files Per Val
+    scope: user
+    metric: files_per_val
+    limit: 1000
+    timeFrame: usage
+  - name: Daily Log Lines (Free)
+    scope: user
+    metric: log_lines_per_day
+    limit: 100000
+    timeFrame: day
+  - name: Daily Log Lines (Pro/Teams)
+    scope: user
+    metric: log_lines_per_day
+    limit: 200000
+    timeFrame: day

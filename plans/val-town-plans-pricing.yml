@@ -1,0 +1,280 @@
+---
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Val Town
+providerId: val-town
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Developer Tools
+  - Serverless
+  - Social Coding
+description: >-
+  Val Town offers a Free tier for hobbyists plus paid Pro, Business, and
+  Enterprise tiers unlocking higher run quotas, private vals, custom domains,
+  and AI (Townie) credits.
+sources:
+  - https://www.val.town/pricing
+plans:
+  - id: val-town-free
+    name: Free
+    type: free
+    description: >-
+      Generous free plan for hobbyists with 100,000 runs per day, public vals
+      only, 3-day log retention, and MCP integration included.
+    entries:
+      - label: Monthly Price
+        name: monthly_price
+        type: boolean
+        metric: USD/month
+        limit: 0
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Runs Per Day
+        name: runs_per_day
+        type: quota
+        metric: runs
+        limit: 100000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Private Vals
+        name: private_vals
+        type: quota
+        metric: vals
+        limit: 0
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Log Retention
+        name: log_retention_days
+        type: quota
+        metric: days
+        limit: 3
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Cron Minimum Interval
+        name: cron_min_interval
+        type: quota
+        metric: minutes
+        limit: 15
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Custom Domains
+        name: custom_domains
+        type: quota
+        metric: domains
+        limit: 0
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Townie AI Credits
+        name: townie_credits
+        type: quota
+        metric: USD
+        limit: 0
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+  - id: val-town-pro
+    name: Pro
+    type: paid
+    description: >-
+      Pro plan at $21/month (or annual with 2 months free) offering 1,000,000
+      runs/day, 2,000 private vals, 10-day log retention, 10 custom domains,
+      1-minute cron intervals, and $10 Townie AI credit monthly.
+    entries:
+      - label: Monthly Price
+        name: monthly_price
+        type: metered
+        metric: USD/month
+        limit: 21
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Runs Per Day
+        name: runs_per_day
+        type: quota
+        metric: runs
+        limit: 1000000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Private Vals
+        name: private_vals
+        type: quota
+        metric: vals
+        limit: 2000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Log Retention
+        name: log_retention_days
+        type: quota
+        metric: days
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Cron Minimum Interval
+        name: cron_min_interval
+        type: quota
+        metric: minutes
+        limit: 1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Custom Domains
+        name: custom_domains
+        type: quota
+        metric: domains
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+      - label: Townie AI Credits
+        name: townie_credits
+        type: quota
+        metric: USD
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$21'
+        userMultiplied: false
+  - id: val-town-business
+    name: Business
+    type: paid
+    description: >-
+      Business plan starting at $167/month for teams, including 5,000,000
+      runs/day, unlimited custom domains, team accounts, Slack Connect, and
+      $100 Townie AI credit per month.
+    entries:
+      - label: Monthly Price
+        name: monthly_price
+        type: metered
+        metric: USD/month
+        limit: 167
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$167'
+        userMultiplied: false
+      - label: Runs Per Day
+        name: runs_per_day
+        type: quota
+        metric: runs
+        limit: 5000000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$167'
+        userMultiplied: false
+      - label: Private Vals
+        name: private_vals
+        type: quota
+        metric: vals
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$167'
+        userMultiplied: false
+      - label: Custom Domains
+        name: custom_domains
+        type: quota
+        metric: domains
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$167'
+        userMultiplied: false
+      - label: Townie AI Credits
+        name: townie_credits
+        type: quota
+        metric: USD
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$167'
+        userMultiplied: false
+  - id: val-town-enterprise
+    name: Enterprise
+    type: enterprise
+    description: >-
+      Enterprise plan with custom pricing offering no limits, flexible Townie AI
+      credits, log export, SOC 2 compliance, and custom support SLAs.
+    entries:
+      - label: Monthly Price
+        name: monthly_price
+        type: metered
+        metric: USD/month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Custom'
+        userMultiplied: false
+      - label: Runs Per Day
+        name: runs_per_day
+        type: quota
+        metric: runs
+        limit: -1
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: 'Custom'
+        userMultiplied: false
+      - label: SOC 2 Compliance
+        name: soc2
+        type: boolean
+        metric: enabled
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Custom'
+        userMultiplied: false
+      - label: Log Export
+        name: log_export
+        type: boolean
+        metric: enabled
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Custom'
+        userMultiplied: false
