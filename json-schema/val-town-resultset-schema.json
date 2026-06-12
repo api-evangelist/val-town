@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/resultset",
+  "title": "ResultSet",
+  "type": "object",
+  "required": [
+    "columns",
+    "columnTypes",
+    "rows",
+    "rowsAffected"
+  ],
+  "properties": {
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Names of columns.\n\nNames of columns can be defined using the `AS` keyword in SQL:\n\n```sql\nSELECT author AS author, COUNT(*) AS count FROM books GROUP BY author\n```"
+    },
+    "columnTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Types of columns.\n\nThe types are currently shown for types declared in a SQL table. For column types of function calls, for example, an empty string is returned."
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "description": "Columns can be accessed like an object by column names."
+        },
+        "title": "TursoRow"
+      },
+      "description": "Rows produced by the statement."
+    },
+    "rowsAffected": {
+      "type": "number",
+      "description": "Number of rows that were affected by an UPDATE, INSERT or DELETE operation.\n\nThis value is not specified for other SQL statements."
+    },
+    "lastInsertRowid": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "ROWID of the last inserted row.\n\nThis value is not specified if the SQL statement was not an INSERT or if the table was not a ROWID table."
+    }
+  },
+  "description": "Result of executing an SQL statement."
+}

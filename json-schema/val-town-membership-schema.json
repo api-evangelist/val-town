@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/membership",
+  "title": "Membership",
+  "type": "object",
+  "required": [
+    "id",
+    "role",
+    "user"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The id of the membership"
+    },
+    "role": {
+      "anyOf": [
+        {
+          "enum": [
+            "owner",
+            "member"
+          ],
+          "description": "The role of the member"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "user": {
+      "type": "object",
+      "required": [
+        "id",
+        "username"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The id of the user"
+        },
+        "username": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "The username of the user"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "description": "A Membership"
+}

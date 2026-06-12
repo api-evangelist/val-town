@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/branch",
+  "title": "Branch",
+  "type": "object",
+  "required": [
+    "name",
+    "id",
+    "version",
+    "createdAt",
+    "updatedAt",
+    "forkedBranchId",
+    "links"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The id of the branch"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "forkedBranchId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The id of the branch this branch was forked from"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "links": {
+      "type": "object",
+      "required": [
+        "self",
+        "html"
+      ],
+      "properties": {
+        "self": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of this resource on this API"
+        },
+        "html": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of this resource on Val Town"
+        }
+      }
+    }
+  },
+  "description": "A Branch"
+}

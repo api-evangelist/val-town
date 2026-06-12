@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/tenvironmentvariable",
+  "title": "TEnvironmentVariable",
+  "type": "object",
+  "required": [
+    "key",
+    "description",
+    "updatedAt",
+    "createdAt"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "maxLength": 8192,
+      "pattern": "^[A-Za-z_][A-Z0-9a-z_]*$",
+      "description": "Name or key of the environment variable, accessible via Deno.env or process.env"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 1024,
+          "description": "Optional description of the environment variable"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "updatedAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "description": "An environment variable"
+}

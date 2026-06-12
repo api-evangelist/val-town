@@ -1,0 +1,89 @@
+vocabulary:
+  name: Val Town API Vocabulary
+  description: >-
+    Core domain terms used across the Val Town REST API covering vals (serverless
+    JavaScript/TypeScript programs), storage primitives, collaboration constructs,
+    and platform integrations.
+  version: "1"
+  terms:
+    - name: val
+      description: >-
+        A named, versioned JavaScript or TypeScript program hosted on Val Town.
+        Vals can be HTTP endpoints, cron jobs, email handlers, or reusable
+        script modules. Each val is identified by a UUID and belongs to an
+        author.
+
+    - name: branch
+      description: >-
+        A named version line within a val, analogous to a Git branch.
+        Branches allow experimental changes to a val without affecting the
+        main published version.
+
+    - name: file
+      description: >-
+        A source file belonging to a val branch. Files hold the actual
+        TypeScript/JavaScript code and are tracked with revision metadata.
+
+    - name: blob
+      description: >-
+        An arbitrary binary or text object stored by Val Town's blob storage
+        service. Blobs are keyed by a user-provided string and scoped per user.
+
+    - name: sqlite
+      description: >-
+        A per-user SQLite database provided by Val Town as a durable storage
+        primitive. Vals can execute SQL statements or batches against it via
+        the REST API.
+
+    - name: environment_variable
+      description: >-
+        A named secret or configuration value scoped to a specific val.
+        Environment variables are injected at runtime and are not exposed in
+        the val's source code.
+
+    - name: user
+      description: >-
+        A registered Val Town account identified by a UUID. Users have a
+        unique username (handle), optional bio, and a profile image URL.
+
+    - name: org
+      description: >-
+        An organizational account on Val Town that can own vals and have
+        multiple member users with defined roles.
+
+    - name: membership
+      description: >-
+        The relationship between a user and an organisation, including the
+        user's role within that organisation.
+
+    - name: telemetry
+      description: >-
+        Observability data emitted by val executions, including distributed
+        traces and structured log lines that can be queried via the REST API.
+
+    - name: trace
+      description: >-
+        An OpenTelemetry-compatible distributed trace record capturing the
+        execution lifecycle of a single val invocation.
+
+    - name: connection
+      description: >-
+        An OAuth-based link between a Val Town user and an external service
+        (e.g. Slack, Google Docs) that the API can exchange for short-lived
+        access tokens.
+
+    - name: bearerAuth
+      description: >-
+        The authentication scheme used by the Val Town API. Callers pass a
+        personal API token as a Bearer token in the Authorization header.
+
+    - name: privacy
+      description: >-
+        The visibility setting of a val. Possible values are "public",
+        "unlisted", and "private", controlling who can view or run a val.
+
+    - name: mcp
+      description: >-
+        Model Context Protocol endpoint hosted at api.val.town/v3/mcp,
+        enabling LLMs and AI agents to interact with Val Town resources
+        over HTTP transport.

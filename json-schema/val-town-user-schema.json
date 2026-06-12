@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/user",
+  "title": "User",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "bio",
+    "username",
+    "profileImageUrl",
+    "url",
+    "links"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The ID of this user"
+    },
+    "type": {
+      "enum": [
+        "user",
+        "org"
+      ],
+      "description": "Whether this is a user or an organization"
+    },
+    "bio": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The user\u2019s biography, if they have provided one"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "username": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The user\u2019s handle that they chose for themselves. Does not include the @ symbol"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "profileImageUrl": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "URL that points to the user\u2019s profile image, if one exists",
+          "format": "uri"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of this user\u2019s profile on Val Town\u2019s website"
+    },
+    "links": {
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of this user on this API"
+        }
+      }
+    }
+  },
+  "description": "User object",
+  "example": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "bio": "Hello world",
+    "username": "tmcw",
+    "url": "https://val.town/u/tmcw",
+    "profileImageUrl": null
+  }
+}

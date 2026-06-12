@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "name": "hello",
+      "author": {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "username": "tmcw"
+      },
+      "privacy": "public",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-02T00:00:00Z",
+      "links": {
+        "self": "https://api.val.town/v2/vals/00000000-0000-0000-0000-000000000000"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.val.town/v2/vals?limit=20",
+    "next": "https://api.val.town/v2/vals?limit=20&offset=20"
+  }
+}

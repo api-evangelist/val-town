@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.val.town/schemas/org",
+  "title": "Org",
+  "type": "object",
+  "required": [
+    "username",
+    "id"
+  ],
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The id of the org"
+    }
+  },
+  "description": "An Org"
+}

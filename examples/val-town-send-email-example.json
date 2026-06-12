@@ -1,0 +1,7 @@
+{
+  "to": "user@example.com",
+  "from": "notifications@val.town",
+  "subject": "Hello from Val Town",
+  "text": "Your val ran successfully.",
+  "html": "<p>Your val ran successfully.</p>"
+}
