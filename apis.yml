@@ -86,6 +86,8 @@ apis:
       - type: Documentation
         url: https://docs.val.town/
 common:
+  - type: AgenticAccess
+    url: agentic-access/val-town-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/val-town-vulnerability-disclosure.yml
   - type: DomainSecurity
