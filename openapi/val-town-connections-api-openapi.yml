@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias connections API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: connections
+paths:
+  /v3/connections/slack/token:
+    post:
+      tags:
+      - connections
+      description: Get a valid Slack access token for a connected workspace. Automatically refreshes the token if expired.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - team_id
+              properties:
+                team_id:
+                  type: string
+                  description: The Slack team/workspace ID (e.g., 'T9TK3CUKW')
+                  maxLength: 32
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - access_token
+                properties:
+                  access_token:
+                    type: string
+                    description: A valid Slack access token
+        '403':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+  /v3/connections/google-docs/token:
+    post:
+      tags:
+      - connections
+      description: Get a valid Google access token for a connected Google account. Automatically refreshes the token if expired.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  description: The Google account email
+                  maxLength: 320
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - access_token
+                properties:
+                  access_token:
+                    type: string
+                    description: A valid Google access token
+                  granted_scopes:
+                    type: array
+                    items:
+                      type: string
+                    description: The scopes granted by the user during OAuth (may be a subset of requested scopes)
+        '403':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

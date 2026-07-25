@@ -1,0 +1,231 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias sqlite API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: sqlite
+  description: SQLite
+paths:
+  /v1/sqlite/execute:
+    post:
+      operationId: sqliteExecute
+      tags:
+      - sqlite
+      description: Execute a single SQLite statement and return results
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - statement
+              properties:
+                statement:
+                  anyOf:
+                  - type: string
+                    description: Simple SQL statement to run in SQLite
+                    maxLength: 100000
+                  - type: object
+                    required:
+                    - sql
+                    - args
+                    properties:
+                      sql:
+                        type: string
+                        description: SQL statement, with ? placeholders for arguments
+                        maxLength: 100000
+                      args:
+                        anyOf:
+                        - type: array
+                          items:
+                            title: TursoValue
+                            description: A value to be used as a parameter
+                          maxItems: 500
+                        - type: object
+                          maxProperties: 500
+                          additionalProperties:
+                            title: TursoValue
+                            description: A value to be used as a parameter
+                        title: StatementArg
+                        description: List of arguments to be used in the given statement
+                    title: ParameterizedQuery
+                    description: A parameterized SQL query. See https://docs.turso.tech/sdk/ts/reference#batch-transactions for reference
+              description: A single statement to run
+            examples:
+              example1:
+                value:
+                  statement: SELECT 1;
+              example2:
+                value:
+                  statement:
+                    sql: SELECT * FROM table WHERE column = ?;
+                    args:
+                    - 1
+        description: A single statement to run
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Result of executing an SQL statement.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultSet'
+  /v1/sqlite/batch:
+    post:
+      operationId: sqliteBatch
+      tags:
+      - sqlite
+      description: Execute a batch of SQLite statements and return results for all of them
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - statements
+              properties:
+                statements:
+                  type: array
+                  items:
+                    anyOf:
+                    - type: string
+                      description: Simple SQL statement to run in SQLite
+                      maxLength: 100000
+                    - type: object
+                      required:
+                      - sql
+                      - args
+                      properties:
+                        sql:
+                          type: string
+                          description: SQL statement, with ? placeholders for arguments
+                          maxLength: 100000
+                        args:
+                          anyOf:
+                          - type: array
+                            items:
+                              title: TursoValue
+                              description: A value to be used as a parameter
+                            maxItems: 500
+                          - type: object
+                            maxProperties: 500
+                            additionalProperties:
+                              title: TursoValue
+                              description: A value to be used as a parameter
+                          title: StatementArg
+                          description: List of arguments to be used in the given statement
+                      title: ParameterizedQuery
+                      description: A parameterized SQL query. See https://docs.turso.tech/sdk/ts/reference#batch-transactions for reference
+                  maxItems: 500
+                mode:
+                  enum:
+                  - write
+                  - read
+                  - deferred
+              description: A set of statements to be run in a single batch
+            example:
+              statements:
+              - SELECT 1;
+              mode: read
+        description: A set of statements to be run in a single batch
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Array of results from the statements executed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResultSet'
+                description: Array of results from the statements executed
+              example:
+              - columns:
+                - id
+                columnTypes:
+                - number
+                rows:
+                - - 1
+                rowsAffected: 0
+                lastInsertRowid: null
+components:
+  schemas:
+    ResultSet:
+      type: object
+      required:
+      - columns
+      - columnTypes
+      - rows
+      - rowsAffected
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: 'Names of columns.
+
+
+            Names of columns can be defined using the `AS` keyword in SQL:
+
+
+            ```sql
+
+            SELECT author AS author, COUNT(*) AS count FROM books GROUP BY author
+
+            ```'
+        columnTypes:
+          type: array
+          items:
+            type: string
+          description: 'Types of columns.
+
+
+            The types are currently shown for types declared in a SQL table. For column types of function calls, for example, an empty string is returned.'
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              description: Columns can be accessed like an object by column names.
+            title: TursoRow
+          description: Rows produced by the statement.
+        rowsAffected:
+          type: number
+          description: 'Number of rows that were affected by an UPDATE, INSERT or DELETE operation.
+
+
+            This value is not specified for other SQL statements.'
+        lastInsertRowid:
+          anyOf:
+          - type: string
+          - type: number
+          - type: 'null'
+          description: 'ROWID of the last inserted row.
+
+
+            This value is not specified if the SQL statement was not an INSERT or if the table was not a ROWID table.'
+      title: ResultSet
+      description: Result of executing an SQL statement.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

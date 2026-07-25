@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias files API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: files
+paths:
+  /v2/files/{file_id}:
+    get:
+      operationId: queryValFileById
+      tags:
+      - files
+      description: Get file metadata by file ID
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: file_id
+        required: true
+        description: ID of a file in a val
+      responses:
+        '200':
+          description: A File or Directory's Metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRevisionMetadataV2'
+components:
+  schemas:
+    FileRevisionMetadataV2:
+      type: object
+      required:
+      - name
+      - id
+      - path
+      - version
+      - updatedAt
+      - type
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the resource
+        path:
+          type: string
+        version:
+          type: integer
+          minimum: 0
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          enum:
+          - directory
+          - file
+          - interval
+          - http
+          - email
+          - script
+        links:
+          type: object
+          required:
+          - self
+          - html
+          - module
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+            module:
+              type: string
+              format: uri
+              description: The URL of this resource's source code as a module
+            endpoint:
+              type: string
+              format: uri
+              description: This resource's web endpoint, where it serves a website or API
+            email:
+              type: string
+              format: email
+              description: This resource's email address for receiving emails (for email-type vals)
+      description: A File or Directory's Metadata
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

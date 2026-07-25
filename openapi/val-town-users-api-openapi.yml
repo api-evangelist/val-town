@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias users API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: users
+  description: Users
+paths:
+  /v1/users/{user_id}:
+    get:
+      operationId: usersGet
+      tags:
+      - users
+      description: Get basic information about a user
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: user_id
+        required: true
+        description: User Id
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      required:
+      - id
+      - type
+      - bio
+      - username
+      - profileImageUrl
+      - url
+      - links
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The ID of this user
+        type:
+          enum:
+          - user
+          - org
+          description: Whether this is a user or an organization
+        bio:
+          anyOf:
+          - type: string
+            description: The user’s biography, if they have provided one
+          - type: 'null'
+        username:
+          anyOf:
+          - type: string
+            description: The user’s handle that they chose for themselves. Does not include the @ symbol
+          - type: 'null'
+        profileImageUrl:
+          anyOf:
+          - type: string
+            description: URL that points to the user’s profile image, if one exists
+            format: uri
+          - type: 'null'
+        url:
+          type: string
+          format: uri
+          description: URL of this user’s profile on Val Town’s website
+        links:
+          type: object
+          required:
+          - self
+          properties:
+            self:
+              type: string
+              format: uri
+              description: URL of this user on this API
+      description: User object
+      example:
+        id: 00000000-0000-0000-0000-000000000000
+        bio: Hello world
+        username: tmcw
+        url: https://val.town/u/tmcw
+        profileImageUrl: null
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

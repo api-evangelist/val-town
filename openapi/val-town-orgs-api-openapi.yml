@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias orgs API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: orgs
+paths:
+  /v2/orgs:
+    get:
+      operationId: orgsList
+      tags:
+      - orgs
+      description: Get all orgs you are a member of
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        required: true
+        description: Number of items to skip in order to deliver paginated results
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Org'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+  /v2/orgs/{org_id}/memberships:
+    get:
+      operationId: orgsMembershipsList
+      tags:
+      - orgs
+      description: List all memberships of an org
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: org_id
+        required: true
+        description: Id of an org
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Membership'
+components:
+  schemas:
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
+    Membership:
+      type: object
+      required:
+      - id
+      - role
+      - user
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The id of the membership
+        role:
+          anyOf:
+          - enum:
+            - owner
+            - member
+            description: The role of the member
+          - type: 'null'
+        user:
+          type: object
+          required:
+          - id
+          - username
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: The id of the user
+            username:
+              anyOf:
+              - type: string
+                description: The username of the user
+              - type: 'null'
+      description: A Membership
+    Org:
+      type: object
+      required:
+      - username
+      - id
+      properties:
+        username:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the org
+      description: An Org
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

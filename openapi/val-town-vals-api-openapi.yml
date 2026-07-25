@@ -1,0 +1,1082 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias vals API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: vals
+  description: 'These endpoints
+
+    let you get, create, and run vals.'
+paths:
+  /v2/vals/{val_id}:
+    get:
+      operationId: valsGet2
+      tags:
+      - vals
+      description: Get a val by id
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '200':
+          description: A Val
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Val'
+    delete:
+      operationId: projectsDelete2
+      tags:
+      - vals
+      description: Delete a project
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '204':
+          description: Default Response
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                description: Project not found
+  /v2/vals:
+    get:
+      operationId: valsList2
+      tags:
+      - vals
+      description: Lists all vals including all public vals and your unlisted and private vals
+      parameters:
+      - schema:
+          enum:
+          - public
+          - unlisted
+          - private
+        in: query
+        name: privacy
+        required: false
+        description: This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them.
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: user_id
+        required: false
+        description: User ID to filter by
+      - schema:
+          type: string
+          format: date-time
+        in: query
+        name: cursor
+        required: false
+        description: Cursor to start the pagination from
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Val'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+    post:
+      operationId: valsCreate2
+      tags:
+      - vals
+      description: Create a new val
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - privacy
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 48
+                  pattern: ^[a-zA-Z][a-zA-Z0-9\-_]*$
+                description:
+                  type: string
+                  maxLength: 64
+                privacy:
+                  enum:
+                  - public
+                  - unlisted
+                  - private
+                orgId:
+                  type: string
+                  format: uuid
+                  description: ID of the org to create the val in
+              description: Val information provided to create a new val
+            example:
+              name: myVal
+              description: My val
+              privacy: public
+        description: Val information provided to create a new val
+      responses:
+        '201':
+          description: A Val
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Val'
+        '409':
+          description: 'Conflict: Project name already exists'
+          content:
+            application/json:
+              schema:
+                description: 'Conflict: Project name already exists'
+  /v2/vals/{val_id}/branches/{branch_id}:
+    get:
+      operationId: branchesGet2
+      tags:
+      - vals
+      description: Get a branch by id
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: branch_id
+        required: true
+        description: Id of a branch
+      responses:
+        '200':
+          description: A Branch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+    delete:
+      operationId: branchesDelete2
+      tags:
+      - vals
+      description: Delete a branch
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: branch_id
+        required: true
+        description: Id of a branch
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Branch not found
+          content:
+            application/json:
+              schema:
+                description: Branch not found
+  /v2/vals/{val_id}/branches:
+    get:
+      operationId: branchesList2
+      tags:
+      - vals
+      description: List all branches for a val
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        required: true
+        description: Number of items to skip in order to deliver paginated results
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Branch'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+    post:
+      operationId: branchesCreate2
+      tags:
+      - vals
+      description: Create a new branch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 48
+                  pattern: ^[a-zA-Z0-9\$\[\]\(\)\-_.]+$
+                branchId:
+                  type: string
+                  format: uuid
+                  description: The branch ID to fork from. If this is not specified, the new branch will be forked from main.
+              description: Branch information provided to create a new project
+            example:
+              name: my-branch
+              branchId: 00000000-0000-0000-0000-000000000000
+        description: Branch information provided to create a new project
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '201':
+          description: A Branch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+        '409':
+          description: 'Conflict: Branch name already exists in this project'
+          content:
+            application/json:
+              schema:
+                description: 'Conflict: Branch name already exists in this project'
+  /v2/vals/{val_id}/files:
+    get:
+      operationId: valFilesGet2
+      tags:
+      - vals
+      description: Get metadata for files and directories in a val. If path is an empty string, returns files at the root directory.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+        in: query
+        name: version
+        required: false
+        description: Specific branch version to query
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: branch_id
+        required: false
+        description: Id to query
+      - schema:
+          type: string
+        in: query
+        name: path
+        required: true
+        description: Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory.
+      - schema:
+          type: boolean
+          default: false
+        in: query
+        name: recursive
+        required: true
+        description: Whether to recursively act on all files in the project
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        required: true
+        description: Number of items to skip in order to deliver paginated results
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FileRevisionMetadataV2'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+    post:
+      operationId: filesCreate2
+      tags:
+      - vals
+      description: Create a new file, project val or directory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                required:
+                - type
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - directory
+                  content:
+                    type: 'null'
+              - type: object
+                required:
+                - content
+                - type
+                properties:
+                  content:
+                    type: string
+                    minLength: 0
+                    maxLength: 80000
+                    description: File and val content. An empty string will create an empty file. When creating a directory, the content should be null or undefined.
+                  type:
+                    enum:
+                    - file
+                    - interval
+                    - http
+                    - email
+                    - script
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: branch_id
+        required: false
+        description: The specified branch of the resource. Defaults to main if not provided.
+      - schema:
+          type: string
+        in: query
+        name: path
+        required: true
+        description: Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory.
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '201':
+          description: A File or Directory's Metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRevisionMetadataV2'
+        '409':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - message
+                properties:
+                  message:
+                    type: string
+                    description: File or directory already exists at this path
+    delete:
+      operationId: filesDelete2
+      tags:
+      - vals
+      description: Deletes a file or a directory. To delete a directory and all of its children, use the recursive flag. To delete all files, pass in an empty path and the recursive flag.
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: branch_id
+        required: false
+        description: The specified branch of the resource. Defaults to main if not provided.
+      - schema:
+          type: string
+        in: query
+        name: path
+        required: true
+        description: Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory.
+      - schema:
+          type: boolean
+          default: false
+        in: query
+        name: recursive
+        required: true
+        description: Whether to recursively act on all files in the project
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '204':
+          description: Default Response
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                description: File not found
+    put:
+      operationId: fileContentUpdate2
+      tags:
+      - vals
+      description: Update a file's content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                properties:
+                  content:
+                    type: string
+                    minLength: 0
+                    maxLength: 80000
+                    description: File and val content. An empty string will create an empty file. When creating a directory, the content should be null or undefined.
+                  type:
+                    enum:
+                    - file
+                    - interval
+                    - http
+                    - email
+                    - script
+                  parent_path:
+                    anyOf:
+                    - type: string
+                      description: Path to the directory you'd like to move this file to (e.g. 'folder1/folder2')
+                    - type: 'null'
+                  name:
+                    type: string
+                    minLength: 1
+                    maxLength: 48
+                    pattern: ^[a-zA-Z0-9\$\[\]\(\)\-_.]+$
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: branch_id
+        required: false
+        description: The specified branch of the resource. Defaults to main if not provided.
+      - schema:
+          type: string
+        in: query
+        name: path
+        required: true
+        description: Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory.
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '200':
+          description: A File or Directory's Metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRevisionMetadataV2'
+        '201':
+          description: A File or Directory's Metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRevisionMetadataV2'
+  /v2/vals/{val_id}/environment_variables:
+    get:
+      operationId: valEnvironmentVariablesList
+      tags:
+      - vals
+      description: List environment variables defined in this project. This only includes names, not values.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+          default: 0
+        in: query
+        name: offset
+        required: true
+        description: Number of items to skip in order to deliver paginated results
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TEnvironmentVariable'
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+    post:
+      operationId: valEnvironmentVariablesCreate
+      tags:
+      - vals
+      description: Create a new environment variable scoped to this project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - value
+              - key
+              properties:
+                value:
+                  type: string
+                  description: Value of the environment variable.
+                  maxLength: 8192
+                description:
+                  type: string
+                  description: Optional description of the environment variable
+                  maxLength: 1024
+                key:
+                  type: string
+                  maxLength: 8192
+                  pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
+                  description: Name or key of the environment variable, accessible via Deno.env or process.env
+              description: Inputs for an environment variable
+        description: Inputs for an environment variable
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      responses:
+        '201':
+          description: An environment variable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TEnvironmentVariable'
+        '409':
+          description: Key already exists
+          content:
+            application/json:
+              schema:
+                description: Key already exists
+  /v2/vals/{val_id}/environment_variables/{key}:
+    put:
+      operationId: valEnvironmentVariablesCreate
+      tags:
+      - vals
+      description: Update a environment variable scoped to this project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - value
+              properties:
+                value:
+                  type: string
+                  description: Value of the environment variable.
+                  maxLength: 8192
+                description:
+                  type: string
+                  description: Optional description of the environment variable
+                  maxLength: 1024
+              description: Inputs to update a environment variable
+        description: Inputs to update a environment variable
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      - schema:
+          type: string
+        in: path
+        name: key
+        required: true
+      responses:
+        '201':
+          description: An environment variable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TEnvironmentVariable'
+    delete:
+      operationId: valEnvironmentVariablesDelete
+      tags:
+      - vals
+      description: Delete a environment variable scoped to this project.
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      - schema:
+          type: string
+        in: path
+        name: key
+        required: true
+      responses:
+        '204':
+          description: Default Response
+        '404':
+          description: Environment variable or project not found
+          content:
+            application/json:
+              schema:
+                description: Environment variable or project not found
+  /v2/vals/{val_id}/files/content:
+    get:
+      operationId: filesContentGet2
+      tags:
+      - vals
+      description: Download file content
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+        in: query
+        name: version
+        required: false
+        description: Specific branch version to query
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: branch_id
+        required: false
+        description: Id to query
+      - schema:
+          type: string
+        in: query
+        name: path
+        required: true
+        description: Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory.
+      - schema:
+          type: string
+          format: uuid
+        in: path
+        name: val_id
+        required: true
+        description: Id of a val
+      - schema:
+          type: string
+        in: header
+        name: If-Match
+        required: false
+      - schema:
+          type: string
+        in: header
+        name: If-Unmodified-Since
+        required: false
+      - schema:
+          type: string
+        in: header
+        name: If-None-Match
+        required: false
+      - schema:
+          type: string
+        in: header
+        name: If-Modified-Since
+        required: false
+      - schema:
+          type: string
+        in: header
+        name: Cache-Control
+        required: false
+      responses:
+        '200':
+          description: Contents of the file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: string
+        '304':
+          description: Cached version of the file is the same as the one requested
+          content:
+            application/json:
+              schema:
+                description: Cached version of the file is the same as the one requested
+        '412':
+          description: Precondition failed
+          content:
+            application/json:
+              schema:
+                description: Precondition failed
+                type: string
+components:
+  schemas:
+    FileRevisionMetadataV2:
+      type: object
+      required:
+      - name
+      - id
+      - path
+      - version
+      - updatedAt
+      - type
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the resource
+        path:
+          type: string
+        version:
+          type: integer
+          minimum: 0
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          enum:
+          - directory
+          - file
+          - interval
+          - http
+          - email
+          - script
+        links:
+          type: object
+          required:
+          - self
+          - html
+          - module
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+            module:
+              type: string
+              format: uri
+              description: The URL of this resource's source code as a module
+            endpoint:
+              type: string
+              format: uri
+              description: This resource's web endpoint, where it serves a website or API
+            email:
+              type: string
+              format: email
+              description: This resource's email address for receiving emails (for email-type vals)
+      description: A File or Directory's Metadata
+    Branch:
+      type: object
+      required:
+      - name
+      - id
+      - version
+      - createdAt
+      - updatedAt
+      - forkedBranchId
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the branch
+        version:
+          type: integer
+          minimum: 0
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        forkedBranchId:
+          anyOf:
+          - type: string
+            description: The id of the branch this branch was forked from
+          - type: 'null'
+        links:
+          type: object
+          required:
+          - self
+          - html
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+      description: A Branch
+    TEnvironmentVariable:
+      type: object
+      required:
+      - key
+      - description
+      - updatedAt
+      - createdAt
+      properties:
+        key:
+          type: string
+          maxLength: 8192
+          pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
+          description: Name or key of the environment variable, accessible via Deno.env or process.env
+        description:
+          anyOf:
+          - type: string
+            maxLength: 1024
+            description: Optional description of the environment variable
+          - type: 'null'
+        updatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+        createdAt:
+          type: string
+          format: date-time
+      description: An environment variable
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
+    Val:
+      type: object
+      required:
+      - name
+      - id
+      - createdAt
+      - privacy
+      - author
+      - imageUrl
+      - description
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the val
+        createdAt:
+          type: string
+          format: date-time
+        privacy:
+          enum:
+          - public
+          - unlisted
+          - private
+          description: This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them.
+        author:
+          type: object
+          required:
+          - type
+          - id
+          - username
+          properties:
+            type:
+              anyOf:
+              - type: string
+                enum:
+                - user
+              - type: string
+                enum:
+                - org
+            id:
+              type: string
+              format: uuid
+            username:
+              anyOf:
+              - type: string
+              - type: 'null'
+        imageUrl:
+          anyOf:
+          - type: string
+            description: The URL of this val's image
+          - type: 'null'
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+        links:
+          type: object
+          required:
+          - self
+          - html
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+      description: A Val
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

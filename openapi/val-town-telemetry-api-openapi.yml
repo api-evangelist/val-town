@@ -1,0 +1,319 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias telemetry API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: telemetry
+paths:
+  /v1/telemetry/traces:
+    get:
+      operationId: traceList
+      tags:
+      - telemetry
+      description: 'Get OpenTelemetry traces within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Choose to return in end_time order instead to view traces that completed in a window or since a time. Filter additionally by branch_ids or file_id.'
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: file_id
+        required: false
+        description: Include only resources from a given file identified by its ID
+      - schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+          maxItems: 20
+        in: query
+        name: branch_ids
+        required: false
+        description: Branch IDs to filter by
+      - schema:
+          enum:
+          - asc
+          - desc
+          default: desc
+        in: query
+        name: direction
+        required: true
+        description: Sort direction for the traces. Defaults to descending order of timestamp.
+      - schema:
+          type: string
+          format: date-time
+        in: query
+        name: start
+        required: false
+        description: Start date of the time window (earliest time)
+      - schema:
+          type: string
+          format: date-time
+        in: query
+        name: end
+        required: false
+        description: End date of the time window (latest time)
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      - schema:
+          enum:
+          - start_time
+          - end_time
+          default: start_time
+        in: query
+        name: order_by
+        required: false
+        description: When set to end_time, traces are sorted by their end time, and pending traces are omitted. When set to start_time, all traces are included, with pending traces given "0" for their end time.
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - traceId
+                      - name
+                      - startTimeUnixNano
+                      - endTimeUnixNano
+                      - attributes
+                      - status
+                      properties:
+                        traceId:
+                          type: string
+                        name:
+                          type: string
+                        startTimeUnixNano:
+                          type: string
+                        endTimeUnixNano:
+                          type: string
+                          description: 0 if trace is unfinished
+                        attributes:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - key
+                            - value
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: object
+                                properties:
+                                  stringValue:
+                                    type: string
+                                  intValue:
+                                    type: string
+                                  doubleValue:
+                                    type: number
+                                  boolValue:
+                                    type: boolean
+                                  arrayValue: {}
+                                  kvlistValue: {}
+                                  bytesValue:
+                                    type: string
+                        status:
+                          type: object
+                          required:
+                          - message
+                          - code
+                          properties:
+                            message:
+                              type: string
+                            code:
+                              type: number
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+  /v1/telemetry/logs:
+    get:
+      operationId: logList
+      tags:
+      - telemetry
+      description: 'Get OpenTelemetry logs within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Filter additionally by branch_ids or file_id.'
+      parameters:
+      - schema:
+          type: array
+          items:
+            type: string
+            description: Include only logs from a given trace ID
+            maxLength: 32
+            minLength: 32
+          maxItems: 100
+        in: query
+        name: trace_ids
+        required: false
+      - schema:
+          type: string
+          format: uuid
+        in: query
+        name: file_id
+        required: false
+        description: Include only resources from a given file identified by its ID
+      - schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+          maxItems: 20
+        in: query
+        name: branch_ids
+        required: false
+        description: Branch IDs to filter by
+      - schema:
+          enum:
+          - asc
+          - desc
+          default: desc
+        in: query
+        name: direction
+        required: true
+        description: Sort direction for the traces. Defaults to descending order of timestamp.
+      - schema:
+          type: string
+          format: date-time
+        in: query
+        name: start
+        required: false
+        description: Start date of the time window (earliest time)
+      - schema:
+          type: string
+          format: date-time
+        in: query
+        name: end
+        required: false
+        description: End date of the time window (latest time)
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        in: query
+        name: limit
+        required: true
+        description: Maximum items to return in each paginated response
+      responses:
+        '200':
+          description: A paginated result set
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                - links
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - timeUnixNano
+                      - body
+                      - traceId
+                      - attributes
+                      - severityText
+                      properties:
+                        timeUnixNano:
+                          type: string
+                        body:
+                          type: object
+                          properties:
+                            stringValue:
+                              type: string
+                            intValue:
+                              type: string
+                            doubleValue:
+                              type: number
+                            boolValue:
+                              type: boolean
+                            arrayValue: {}
+                            kvlistValue: {}
+                            bytesValue:
+                              type: string
+                        traceId:
+                          type: string
+                        attributes:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - key
+                            - value
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: object
+                                properties:
+                                  stringValue:
+                                    type: string
+                                  intValue:
+                                    type: string
+                                  doubleValue:
+                                    type: number
+                                  boolValue:
+                                    type: boolean
+                                  arrayValue: {}
+                                  kvlistValue: {}
+                                  bytesValue:
+                                    type: string
+                        severityText:
+                          type: string
+                  links:
+                    $ref: '#/components/schemas/PaginationLinks'
+                description: A paginated result set
+components:
+  schemas:
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias emails API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: emails
+  description: Emails
+paths:
+  /v1/email:
+    post:
+      operationId: emailsSend
+      tags:
+      - emails
+      description: Send emails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+                  description: The subject line of the email
+                from:
+                  anyOf:
+                  - type: string
+                    maxLength: 320
+                  - type: object
+                    required:
+                    - email
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 256
+                      email:
+                        type: string
+                        maxLength: 320
+                    title: EmailNameAndAddress
+                    description: An email address and name
+                  title: EmailData
+                headers:
+                  type: object
+                  description: A set of headers to include the email that you send
+                  maxProperties: 50
+                  additionalProperties:
+                    type: string
+                to:
+                  anyOf:
+                  - anyOf:
+                    - type: string
+                      maxLength: 320
+                    - type: object
+                      required:
+                      - email
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 256
+                        email:
+                          type: string
+                          maxLength: 320
+                      title: EmailNameAndAddress
+                      description: An email address and name
+                    title: EmailData
+                  - type: array
+                    items:
+                      anyOf:
+                      - type: string
+                        maxLength: 320
+                      - type: object
+                        required:
+                        - email
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 256
+                          email:
+                            type: string
+                            maxLength: 320
+                        title: EmailNameAndAddress
+                        description: An email address and name
+                      title: EmailData
+                    title: EmailDataList
+                    maxItems: 50
+                  title: EmailDataInput
+                  description: A single email or list of emails for one of the address fields
+                cc:
+                  anyOf:
+                  - anyOf:
+                    - type: string
+                      maxLength: 320
+                    - type: object
+                      required:
+                      - email
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 256
+                        email:
+                          type: string
+                          maxLength: 320
+                      title: EmailNameAndAddress
+                      description: An email address and name
+                    title: EmailData
+                  - type: array
+                    items:
+                      anyOf:
+                      - type: string
+                        maxLength: 320
+                      - type: object
+                        required:
+                        - email
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 256
+                          email:
+                            type: string
+                            maxLength: 320
+                        title: EmailNameAndAddress
+                        description: An email address and name
+                      title: EmailData
+                    title: EmailDataList
+                    maxItems: 50
+                  title: EmailDataInput
+                  description: A single email or list of emails for one of the address fields
+                bcc:
+                  anyOf:
+                  - anyOf:
+                    - type: string
+                      maxLength: 320
+                    - type: object
+                      required:
+                      - email
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 256
+                        email:
+                          type: string
+                          maxLength: 320
+                      title: EmailNameAndAddress
+                      description: An email address and name
+                    title: EmailData
+                  - type: array
+                    items:
+                      anyOf:
+                      - type: string
+                        maxLength: 320
+                      - type: object
+                        required:
+                        - email
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 256
+                          email:
+                            type: string
+                            maxLength: 320
+                        title: EmailNameAndAddress
+                        description: An email address and name
+                      title: EmailData
+                    title: EmailDataList
+                    maxItems: 50
+                  title: EmailDataInput
+                  description: A single email or list of emails for one of the address fields
+                text:
+                  type: string
+                  description: Text content of the email, for email clients that may not support HTML
+                html:
+                  type: string
+                  description: HTML content of the email. Can be specified alongside text
+                  minLength: 1
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - content
+                    - filename
+                    properties:
+                      content:
+                        type: string
+                      filename:
+                        type: string
+                      type:
+                        type: string
+                      disposition:
+                        type: string
+                      contentId:
+                        type: string
+                    title: AttachmentObject
+                  description: A list of attachments to add to the email
+                  maxItems: 5
+                replyToList:
+                  anyOf:
+                  - type: object
+                    required:
+                    - email
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 256
+                      email:
+                        type: string
+                        maxLength: 320
+                    title: EmailNameAndAddress
+                    description: An email address and name
+                  - type: array
+                    items:
+                      type: object
+                      required:
+                      - email
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 256
+                        email:
+                          type: string
+                          maxLength: 320
+                      title: EmailNameAndAddress
+                      description: An email address and name
+                    title: EmailList
+                    maxItems: 10
+                  title: ReplyToList
+                  description: A reply-to list of email addresses
+              description: Fields for an email to be sent
+            example:
+              subject: An important message
+              text: Hello world
+              html: Hello <strong>world</strong>
+        description: Fields for an email to be sent
+      security:
+      - bearerAuth: []
+      responses:
+        '202':
+          description: Email accepted to be sent
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - message
+                properties:
+                  message:
+                    type: string
+                description: Email accepted to be sent
+        '500':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here

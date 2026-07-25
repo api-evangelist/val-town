@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: Val Town alias API
+  description: 'Val Town’s public API
+
+
+    OpenAPI JSON endpoint:
+
+
+    https://api.val.town/openapi.json'
+  termsOfService: https://www.val.town/termsofuse
+  version: '1'
+servers:
+- url: https://api.val.town
+  description: Production
+tags:
+- name: alias
+  description: 'Many API endpoints
+
+    accept IDs instead of user-facing names. The alias
+
+    endpoints let you convert between the user-facing name of a
+
+    val or another object into an ID that can be used with other
+
+    API endpoints'
+paths:
+  /v1/alias/{username}:
+    get:
+      operationId: aliasUsername
+      tags:
+      - alias
+      description: Get basic details about a user, given their username
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: username
+        required: true
+        description: Username of the user who you are looking for
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /v2/alias/vals/{username}/{val_name}:
+    get:
+      operationId: aliasVal2
+      tags:
+      - alias
+      description: Get a val
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: username
+        required: true
+        description: Username of the user whose val you are looking for
+      - schema:
+          type: string
+        in: path
+        name: val_name
+        required: true
+        description: Name of the val you're looking for
+      responses:
+        '200':
+          description: A Val
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Val'
+components:
+  schemas:
+    User:
+      type: object
+      required:
+      - id
+      - type
+      - bio
+      - username
+      - profileImageUrl
+      - url
+      - links
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The ID of this user
+        type:
+          enum:
+          - user
+          - org
+          description: Whether this is a user or an organization
+        bio:
+          anyOf:
+          - type: string
+            description: The user’s biography, if they have provided one
+          - type: 'null'
+        username:
+          anyOf:
+          - type: string
+            description: The user’s handle that they chose for themselves. Does not include the @ symbol
+          - type: 'null'
+        profileImageUrl:
+          anyOf:
+          - type: string
+            description: URL that points to the user’s profile image, if one exists
+            format: uri
+          - type: 'null'
+        url:
+          type: string
+          format: uri
+          description: URL of this user’s profile on Val Town’s website
+        links:
+          type: object
+          required:
+          - self
+          properties:
+            self:
+              type: string
+              format: uri
+              description: URL of this user on this API
+      description: User object
+      example:
+        id: 00000000-0000-0000-0000-000000000000
+        bio: Hello world
+        username: tmcw
+        url: https://val.town/u/tmcw
+        profileImageUrl: null
+    Val:
+      type: object
+      required:
+      - name
+      - id
+      - createdAt
+      - privacy
+      - author
+      - imageUrl
+      - description
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the val
+        createdAt:
+          type: string
+          format: date-time
+        privacy:
+          enum:
+          - public
+          - unlisted
+          - private
+          description: This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them.
+        author:
+          type: object
+          required:
+          - type
+          - id
+          - username
+          properties:
+            type:
+              anyOf:
+              - type: string
+                enum:
+                - user
+              - type: string
+                enum:
+                - org
+            id:
+              type: string
+              format: uuid
+            username:
+              anyOf:
+              - type: string
+              - type: 'null'
+        imageUrl:
+          anyOf:
+          - type: string
+            description: The URL of this val's image
+          - type: 'null'
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+        links:
+          type: object
+          required:
+          - self
+          - html
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+      description: A Val
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Endpoints that support authorization expect Bearer authentication, using an API token provided from Val Town.
+externalDocs:
+  url: https://api.val.town/documentation
+  description: Find more info here
