@@ -1,0 +1,34 @@
+{
+  "provider": "val-town",
+  "sources": [
+    "val-town-alias-api-openapi.yml",
+    "val-town-blobs-api-openapi.yml",
+    "val-town-connections-api-openapi.yml",
+    "val-town-emails-api-openapi.yml",
+    "val-town-files-api-openapi.yml",
+    "val-town-me-api-openapi.yml",
+    "val-town-orgs-api-openapi.yml",
+    "val-town-sqlite-api-openapi.yml",
+    "val-town-telemetry-api-openapi.yml",
+    "val-town-users-api-openapi.yml",
+    "val-town-vals-api-openapi.yml"
+  ],
+  "outputs": [
+    "val-town-alias-api-openapi.yml",
+    "val-town-blobs-api-openapi.yml",
+    "val-town-connections-api-openapi.yml",
+    "val-town-emails-api-openapi.yml",
+    "val-town-files-api-openapi.yml",
+    "val-town-me-api-openapi.yml",
+    "val-town-orgs-api-openapi.yml",
+    "val-town-sqlite-api-openapi.yml",
+    "val-town-telemetry-api-openapi.yml",
+    "val-town-users-api-openapi.yml",
+    "val-town-vals-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
