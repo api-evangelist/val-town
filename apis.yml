@@ -222,6 +222,9 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/val-town/sdk/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/val-town-agentic-access.yml
   - type: VulnerabilityDisclosure
