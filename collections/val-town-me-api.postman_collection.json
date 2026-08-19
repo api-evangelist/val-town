@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "eb6ece53-e7d0-4d6f-85f3-5c9f6f2d001e",
+      "name": "me",
+      "description": {
+        "content": "These endpoints\ngive access to details and data from the requesting user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "082064c1-cad4-46d0-9a64-3a1557f04a78",
+          "name": "me Get",
+          "request": {
+            "name": "me Get",
+            "description": {
+              "content": "Get profile information for the current user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "508185d5-4d28-4844-8d9f-2b96b4aeb3af",
+              "name": "Your user information, with tier and email included",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"bio\": \"Hello world\",\n  \"username\": \"tmcw\",\n  \"email\": \"example@example.com\",\n  \"profileImageUrl\": null,\n  \"tier\": \"pro\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1d02b22-c468-43f1-a716-8262bb6d5724",
+          "name": "me Vals2",
+          "request": {
+            "name": "me Vals2",
+            "description": {
+              "content": "[BETA] List all of a user's vals for authenticated users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "me",
+                "vals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "(Required) Number of items to skip in order to deliver paginated results"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "(Required) Maximum items to return in each paginated response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fadb87ab-5009-4aea-a58f-61bc204dd890",
+              "name": "A paginated result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "me",
+                    "vals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"7862e1cc-4045-63a6-b008-eacf17721b09\",\n      \"createdAt\": \"1980-11-13T16:50:54.982Z\",\n      \"privacy\": \"string\",\n      \"author\": {\n        \"type\": \"user\",\n        \"id\": \"03888725-31d9-eb5d-bb70-4e3b0a3383c8\",\n        \"username\": \"string\"\n      },\n      \"imageUrl\": \"string\",\n      \"description\": \"string\",\n      \"links\": {\n        \"self\": \"http://AhImNnnKVwSZI.cnhcWyuVGBy9B9,94JQ24c9XCU+4sELyhNPgm2e5OYK7s7c\",\n        \"html\": \"http://WcWWI.bjpmaEWE,xW1nd,+.xlp7yohYTazSsp\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"5b64fd94-34cf-6707-3809-136d72b52c87\",\n      \"createdAt\": \"1951-09-27T08:08:03.968Z\",\n      \"privacy\": \"string\",\n      \"author\": {\n        \"type\": \"user\",\n        \"id\": \"de21c21b-3777-795b-0140-4814d55db014\",\n        \"username\": \"string\"\n      },\n      \"imageUrl\": \"string\",\n      \"description\": \"string\",\n      \"links\": {\n        \"self\": \"https://ylhcVUFAQNbml.opmZaf+6wYVnYOk\",\n        \"html\": \"https://IXqEhOrgkelkWpPNrrlVXDIIgsiFOndVb.hprLy\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://NKwJLjOtajcfO.iprBGjYm01YEzAZfuzg\",\n    \"prev\": \"http://lermigALDVefCwUEl.lurNQ.2OO7vtwPHXL8y1Rz.WSVA8fsUSL\",\n    \"next\": \"http://Mf.woyX5GQ4YRG3.9qtgxQs8za0cxTUd-ja1+,LicouJfLFuFOuvqtA.LwmytXt7uq5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.val.town",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "984c3daa-4e56-4c2a-9257-76bb22eefb94",
+    "name": "Val Town alias me API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Val Town’s public API\n\nOpenAPI JSON endpoint:\n\nhttps://api.val.town/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

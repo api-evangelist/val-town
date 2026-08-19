@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias users API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "usersGet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v1/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Get basic information about a user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

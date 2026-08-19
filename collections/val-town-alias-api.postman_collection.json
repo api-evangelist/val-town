@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "9db6fafa-c6db-41d9-b638-90291c4122e8",
+      "name": "alias",
+      "description": {
+        "content": "Many API endpoints\naccept IDs instead of user-facing names. The alias\nendpoints let you convert between the user-facing name of a\nval or another object into an ID that can be used with other\nAPI endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4df5b6c-56c7-4551-a9b2-a92590447f78",
+          "name": "alias Username",
+          "request": {
+            "name": "alias Username",
+            "description": {
+              "content": "Get basic details about a user, given their username",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "alias",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username of the user who you are looking for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a00118d0-0bf2-4daa-9df6-7f431efc6bef",
+              "name": "User object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "alias",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username of the user who you are looking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9ee0e3a7-e240-9c5c-c356-f95d18972e2b\",\n  \"type\": \"string\",\n  \"bio\": \"string\",\n  \"username\": \"string\",\n  \"profileImageUrl\": \"https://OrSUaLyiLLuk.stgOTHo9ayz4dXMh8is8uzpME2Lol1JhvrJVyZQkF.4pw8Uq4rrpC1LDsLei0QHcQ61A7EEpHVWQ\",\n  \"url\": \"https://RyPBdtTEagOzrWrrDRDKDt.iaLjF-HQhpUyAql7z\",\n  \"links\": {\n    \"self\": \"http://nMhwiQjsrSE.llkfpIyJJZa3bTho3AM.ilc+4V\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c78c4d12-3dd2-4b73-bc24-b418bde4bead",
+          "name": "alias Val2",
+          "request": {
+            "name": "alias Val2",
+            "description": {
+              "content": "Get a val",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "alias",
+                "vals",
+                ":username",
+                ":val_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username of the user whose val you are looking for"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "val_name",
+                  "description": "(Required) Name of the val you're looking for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35706eb4-5dbf-463e-9875-cfbd0b46a8b6",
+              "name": "A Val",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "alias",
+                    "vals",
+                    ":username",
+                    ":val_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username of the user whose val you are looking for"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "val_name",
+                      "description": "(Required) Name of the val you're looking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"e88dc24c-d77b-53de-a6c5-5e7de8cb4f12\",\n  \"createdAt\": \"2001-06-29T19:40:45.799Z\",\n  \"privacy\": \"string\",\n  \"author\": {\n    \"type\": \"user\",\n    \"id\": \"ed31b0fc-7243-f90d-47d1-14ff34f48a83\",\n    \"username\": \"string\"\n  },\n  \"imageUrl\": \"string\",\n  \"description\": \"string\",\n  \"links\": {\n    \"self\": \"http://DWTNwzdMfZTVnhzFHsCya.nlagijH.NtnZYiCnEAVsFWxUf\",\n    \"html\": \"http://buxATnt.siP3om5CnVqkC8qd13RQR5znrdk\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.val.town",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8ee2362d-26a9-4959-8e4f-a65b64ca411e",
+    "name": "Val Town alias API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Val Town’s public API\n\nOpenAPI JSON endpoint:\n\nhttps://api.val.town/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

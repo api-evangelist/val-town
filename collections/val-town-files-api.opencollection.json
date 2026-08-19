@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias files API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "queryValFileById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a file in a val"
+              }
+            ]
+          },
+          "docs": "Get file metadata by file ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

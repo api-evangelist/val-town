@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias orgs API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "orgs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "orgsList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/orgs",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip in order to deliver paginated results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              }
+            ]
+          },
+          "docs": "Get all orgs you are a member of"
+        },
+        {
+          "info": {
+            "name": "orgsMembershipsList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/orgs/:org_id/memberships",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of an org"
+              }
+            ]
+          },
+          "docs": "List all memberships of an org"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

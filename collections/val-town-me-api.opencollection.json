@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias me API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "me",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "meGet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v1/me"
+          },
+          "docs": "Get profile information for the current user"
+        },
+        {
+          "info": {
+            "name": "meVals2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/me/vals",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip in order to deliver paginated results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "[BETA] List all of a user's vals for authenticated users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

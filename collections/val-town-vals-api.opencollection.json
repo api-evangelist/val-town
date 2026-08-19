@@ -1,0 +1,543 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias vals API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "valsGet2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "Get a val by id"
+        },
+        {
+          "info": {
+            "name": "projectsDelete2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v2/vals/:val_id",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "Delete a project"
+        },
+        {
+          "info": {
+            "name": "valsList2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals",
+            "params": [
+              {
+                "name": "privacy",
+                "value": "",
+                "type": "query",
+                "description": "This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User ID to filter by"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor to start the pagination from"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lists all vals including all public vals and your unlisted and private vals"
+        },
+        {
+          "info": {
+            "name": "valsCreate2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v2/vals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new val"
+        },
+        {
+          "info": {
+            "name": "branchesGet2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id/branches/:branch_id",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              },
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a branch"
+              }
+            ]
+          },
+          "docs": "Get a branch by id"
+        },
+        {
+          "info": {
+            "name": "branchesDelete2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v2/vals/:val_id/branches/:branch_id",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              },
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a branch"
+              }
+            ]
+          },
+          "docs": "Delete a branch"
+        },
+        {
+          "info": {
+            "name": "branchesList2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id/branches",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip in order to deliver paginated results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "List all branches for a val"
+        },
+        {
+          "info": {
+            "name": "branchesCreate2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v2/vals/:val_id/branches",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new branch"
+        },
+        {
+          "info": {
+            "name": "valFilesGet2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id/files",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Specific branch version to query"
+              },
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "query",
+                "description": "Id to query"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to recursively act on all files in the project"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip in order to deliver paginated results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "Get metadata for files and directories in a val. If path is an empty string, returns files at the root directory."
+        },
+        {
+          "info": {
+            "name": "filesCreate2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v2/vals/:val_id/files",
+            "params": [
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "query",
+                "description": "The specified branch of the resource. Defaults to main if not provided."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory."
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new file, project val or directory"
+        },
+        {
+          "info": {
+            "name": "fileContentUpdate2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.val.town/v2/vals/:val_id/files",
+            "params": [
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "query",
+                "description": "The specified branch of the resource. Defaults to main if not provided."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory."
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a file's content"
+        },
+        {
+          "info": {
+            "name": "filesDelete2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v2/vals/:val_id/files",
+            "params": [
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "query",
+                "description": "The specified branch of the resource. Defaults to main if not provided."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to recursively act on all files in the project"
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "Deletes a file or a directory. To delete a directory and all of its children, use the recursive flag. To delete all files, pass in an empty path and the recursive flag."
+        },
+        {
+          "info": {
+            "name": "valEnvironmentVariablesList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id/environment_variables",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip in order to deliver paginated results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum items to return in each paginated response"
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "List environment variables defined in this project. This only includes names, not values."
+        },
+        {
+          "info": {
+            "name": "valEnvironmentVariablesCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v2/vals/:val_id/environment_variables",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new environment variable scoped to this project."
+        },
+        {
+          "info": {
+            "name": "valEnvironmentVariablesCreate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.val.town/v2/vals/:val_id/environment_variables/:key",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a environment variable scoped to this project."
+        },
+        {
+          "info": {
+            "name": "valEnvironmentVariablesDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v2/vals/:val_id/environment_variables/:key",
+            "params": [
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a environment variable scoped to this project."
+        },
+        {
+          "info": {
+            "name": "filesContentGet2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/vals/:val_id/files/content",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "If-Unmodified-Since",
+                "value": ""
+              },
+              {
+                "name": "If-None-Match",
+                "value": ""
+              },
+              {
+                "name": "If-Modified-Since",
+                "value": ""
+              },
+              {
+                "name": "Cache-Control",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Specific branch version to query"
+              },
+              {
+                "name": "branch_id",
+                "value": "",
+                "type": "query",
+                "description": "Id to query"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Path to a file or directory (e.g. 'dir/subdir/file.ts'). Pass in an empty string to represent the root directory."
+              },
+              {
+                "name": "val_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of a val"
+              }
+            ]
+          },
+          "docs": "Download file content"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

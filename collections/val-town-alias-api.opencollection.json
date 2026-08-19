@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "alias",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "aliasUsername",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v1/alias/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username of the user who you are looking for"
+              }
+            ]
+          },
+          "docs": "Get basic details about a user, given their username"
+        },
+        {
+          "info": {
+            "name": "aliasVal2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/alias/vals/:username/:val_name",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username of the user whose val you are looking for"
+              },
+              {
+                "name": "val_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the val you're looking for"
+              }
+            ]
+          },
+          "docs": "Get a val"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

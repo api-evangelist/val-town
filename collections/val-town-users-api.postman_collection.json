@@ -1,0 +1,122 @@
+{
+  "item": [
+    {
+      "id": "40f7e7ad-dcfa-4c07-8e5d-f1c113cbf715",
+      "name": "users",
+      "description": {
+        "content": "Users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bbb3d71a-412b-4248-9e76-7d5c61c31693",
+          "name": "users Get",
+          "request": {
+            "name": "users Get",
+            "description": {
+              "content": "Get basic information about a user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":user_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "user_id",
+                  "description": "(Required) User Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be1a70af-77ab-4c7e-a9e4-005217d5bd43",
+              "name": "User object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "user_id",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"88fdfdf0-72af-244d-68d4-b04397adcdfe\",\n  \"type\": \"string\",\n  \"bio\": \"string\",\n  \"username\": \"string\",\n  \"profileImageUrl\": \"https://jnFzejbWlzogYblTqWBHjvlxkvyhFPvJ.blixv7nLru,97WWs4GN5lbR8TShCI38MPaNzt1V3sXyMSOaNij.j62Kbr8xFIBh4p1Db1w54TBC1AJmL5Fl6oL4\",\n  \"url\": \"https://YljqrdvpsXxgvhMrIJwaW.sciEFgt01Utbf8a4rDJEvah5J-oJ,1Pv9r9g2gaCTsnlZCbxuOxvL8pWMwnP2w6pH6wGyK6pSToV6ATEY49U3LOXav\",\n  \"links\": {\n    \"self\": \"http://KkhGHJ.icax-rLYF3x2VtvgomOcSnof-iCJ1N6DKrpyF\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.val.town",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f226078f-49d8-4c27-a239-e62a31c816dc",
+    "name": "Val Town alias users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Val Town’s public API\n\nOpenAPI JSON endpoint:\n\nhttps://api.val.town/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

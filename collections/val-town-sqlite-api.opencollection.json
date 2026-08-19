@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias sqlite API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sqlite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "sqliteExecute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v1/sqlite/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Execute a single SQLite statement and return results"
+        },
+        {
+          "info": {
+            "name": "sqliteBatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v1/sqlite/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Execute a batch of SQLite statements and return results for all of them"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

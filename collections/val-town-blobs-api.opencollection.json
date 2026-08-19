@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias blobs API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "blobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "v1blobsList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v1/blob",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "If specified, only include blobs that start with this string"
+              }
+            ]
+          },
+          "docs": "List blobs in your account"
+        },
+        {
+          "info": {
+            "name": "v1blobsGet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v1/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ]
+          },
+          "docs": "Get a blob’s contents."
+        },
+        {
+          "info": {
+            "name": "v1blobsStore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v1/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Store data in blob storage"
+        },
+        {
+          "info": {
+            "name": "v1blobsDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v1/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a blob"
+        },
+        {
+          "info": {
+            "name": "v2blobsList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/blob",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "If specified, only include blobs that start with this string"
+              }
+            ]
+          },
+          "docs": "List blobs in your account"
+        },
+        {
+          "info": {
+            "name": "v2blobsGet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.val.town/v2/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ]
+          },
+          "docs": "Get a blob’s contents."
+        },
+        {
+          "info": {
+            "name": "v2blobsStore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v2/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Store data in blob storage"
+        },
+        {
+          "info": {
+            "name": "v2blobsDelete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.val.town/v2/blob/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key that uniquely identifies this blob"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a blob"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

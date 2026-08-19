@@ -1,0 +1,218 @@
+{
+  "item": [
+    {
+      "id": "3ed2c3c0-9149-462a-b658-a9e69eed3270",
+      "name": "orgs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5f8c846-5b5b-4a57-a0e2-76f1130e19d3",
+          "name": "orgs List",
+          "request": {
+            "name": "orgs List",
+            "description": {
+              "content": "Get all orgs you are a member of",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "orgs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "(Required) Number of items to skip in order to deliver paginated results"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "(Required) Maximum items to return in each paginated response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c269c997-e8b9-4785-96f1-3e34dbdb9173",
+              "name": "A paginated result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "orgs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"username\": \"string\",\n      \"id\": \"57c07031-ec98-753c-9757-1a75ce89d5d8\"\n    },\n    {\n      \"username\": \"string\",\n      \"id\": \"378208c0-3362-427f-d384-8243c2d9d3b8\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://uFYgZAsrp.mhb7cRQKnkaWh\",\n    \"prev\": \"http://YcBeRkGakzyAU.eutN+C78N2P8J,RPxseNfh-S-ocK7yTjdKfW9KdLrgTI932,VxkhwUNlRqjBTt+BTGw\",\n    \"next\": \"http://SPJdzedvcWSWBuGpayRLXZgkhbt.ztzcDisjztAHN7bn3goDWuyI5jMTDW7Jjk3\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01c6eaaa-daaa-44e0-a8de-48b6ee0884ac",
+          "name": "orgs Memberships List",
+          "request": {
+            "name": "orgs Memberships List",
+            "description": {
+              "content": "List all memberships of an org",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "orgs",
+                ":org_id",
+                "memberships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "org_id",
+                  "description": "(Required) Id of an org"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1687e52b-8c9d-46ec-8560-3edc7c97ac43",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "orgs",
+                    ":org_id",
+                    "memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "org_id",
+                      "description": "(Required) Id of an org"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"90f6746c-c1b3-41fb-74b3-3fa05d7e5f65\",\n    \"role\": \"string\",\n    \"user\": {\n      \"id\": \"3e875809-ae55-871f-bd9b-16e6b47bde34\",\n      \"username\": \"string\"\n    }\n  },\n  {\n    \"id\": \"4f1cb675-c593-424d-54be-ed67a69edcd1\",\n    \"role\": \"string\",\n    \"user\": {\n      \"id\": \"a358c7d3-b710-b585-80b2-a31dfa4d434b\",\n      \"username\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.val.town",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "46bb77dd-c351-4a49-b6c3-a215e2d82449",
+    "name": "Val Town alias orgs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Val Town’s public API\n\nOpenAPI JSON endpoint:\n\nhttps://api.val.town/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

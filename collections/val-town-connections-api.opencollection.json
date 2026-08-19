@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Val Town alias connections API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /v3/connections/slack/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v3/connections/slack/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a valid Slack access token for a connected workspace. Automatically refreshes the token if expired."
+        },
+        {
+          "info": {
+            "name": "POST /v3/connections/google-docs/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.val.town/v3/connections/google-docs/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a valid Google access token for a connected Google account. Automatically refreshes the token if expired."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

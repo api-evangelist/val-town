@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "c3671ba6-bcc6-42d7-b968-f3c0c25950f2",
+      "name": "telemetry",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "612760e8-52b0-4f9a-b10a-f479a70b7b0d",
+          "name": "trace List",
+          "request": {
+            "name": "trace List",
+            "description": {
+              "content": "Get OpenTelemetry traces within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Choose to return in end_time order instead to view traces that completed in a window or since a time. Filter additionally by branch_ids or file_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "telemetry",
+                "traces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "file_id",
+                  "value": "<uuid>",
+                  "description": "Include only resources from a given file identified by its ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch_ids",
+                  "value": "<uuid>",
+                  "description": "Branch IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch_ids",
+                  "value": "<uuid>",
+                  "description": "Branch IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "desc",
+                  "description": "(Required) Sort direction for the traces. Defaults to descending order of timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date of the time window (earliest time)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date of the time window (latest time)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "(Required) Maximum items to return in each paginated response"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "start_time",
+                  "description": "When set to end_time, traces are sorted by their end time, and pending traces are omitted. When set to start_time, all traces are included, with pending traces given \"0\" for their end time."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "923569cc-5c4e-4d0e-82da-56b5fa90295a",
+              "name": "A paginated result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "telemetry",
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "branch_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "branch_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "start_time"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"traceId\": \"string\",\n      \"name\": \"string\",\n      \"startTimeUnixNano\": \"string\",\n      \"endTimeUnixNano\": \"string\",\n      \"attributes\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 1201.1085707814284,\n            \"boolValue\": false,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 7756.894870011294,\n            \"boolValue\": false,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        }\n      ],\n      \"status\": {\n        \"message\": \"string\",\n        \"code\": 5471.279184653437\n      }\n    },\n    {\n      \"traceId\": \"string\",\n      \"name\": \"string\",\n      \"startTimeUnixNano\": \"string\",\n      \"endTimeUnixNano\": \"string\",\n      \"attributes\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 5706.15546631557,\n            \"boolValue\": true,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 5637.724531256121,\n            \"boolValue\": false,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        }\n      ],\n      \"status\": {\n        \"message\": \"string\",\n        \"code\": 7950.494876224886\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://LNtXYsZyFFohGaZxa.gkyjRs49MgEJ,0eN1JDU1ArW\",\n    \"prev\": \"https://zDVRqFVjUzrVCrZrUqMJWL.voyrNhac3jA.EhImauPHRSTXPuDiYVJbPm1ZTU8avbhHKlRzhpjHHiLXBH9k2lNBhPIKLvg19\",\n    \"next\": \"http://joPTwAFzFuBrodlJ.pdhkRLXsTE+Chrvv4O9+NJTYPpI9qvbFLCJk7cesFcjFfLji-JfGcpO60Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "927bad69-b617-4bf7-8bb3-871baeff6161",
+          "name": "log List",
+          "request": {
+            "name": "log List",
+            "description": {
+              "content": "Get OpenTelemetry logs within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Filter additionally by branch_ids or file_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "telemetry",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "trace_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "trace_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "file_id",
+                  "value": "<uuid>",
+                  "description": "Include only resources from a given file identified by its ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch_ids",
+                  "value": "<uuid>",
+                  "description": "Branch IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch_ids",
+                  "value": "<uuid>",
+                  "description": "Branch IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "desc",
+                  "description": "(Required) Sort direction for the traces. Defaults to descending order of timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date of the time window (earliest time)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date of the time window (latest time)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "(Required) Maximum items to return in each paginated response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a964a42e-8b63-4e99-a2db-a493f20ebb96",
+              "name": "A paginated result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "telemetry",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trace_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trace_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "file_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "branch_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "branch_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timeUnixNano\": \"string\",\n      \"body\": {\n        \"stringValue\": \"string\",\n        \"intValue\": \"string\",\n        \"doubleValue\": 9475.45469252152,\n        \"boolValue\": true,\n        \"arrayValue\": \"\",\n        \"kvlistValue\": \"\",\n        \"bytesValue\": \"string\"\n      },\n      \"traceId\": \"string\",\n      \"attributes\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 169.31005283580157,\n            \"boolValue\": true,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 4382.0776526332165,\n            \"boolValue\": true,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        }\n      ],\n      \"severityText\": \"string\"\n    },\n    {\n      \"timeUnixNano\": \"string\",\n      \"body\": {\n        \"stringValue\": \"string\",\n        \"intValue\": \"string\",\n        \"doubleValue\": 5417.73025836734,\n        \"boolValue\": false,\n        \"arrayValue\": \"\",\n        \"kvlistValue\": \"\",\n        \"bytesValue\": \"string\"\n      },\n      \"traceId\": \"string\",\n      \"attributes\": [\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 1848.8150496893852,\n            \"boolValue\": true,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        },\n        {\n          \"key\": \"string\",\n          \"value\": {\n            \"stringValue\": \"string\",\n            \"intValue\": \"string\",\n            \"doubleValue\": 146.38379836683256,\n            \"boolValue\": true,\n            \"arrayValue\": \"\",\n            \"kvlistValue\": \"\",\n            \"bytesValue\": \"string\"\n          }\n        }\n      ],\n      \"severityText\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"http://ljAgvGtSPEIyC.djkkNrV5DW,l,bbla9SQjRSNKr8IIWr13gvQsFg7zDOELe1J.GutvzJnwitFlKtUX-h2Sq610L9\",\n    \"prev\": \"https://TqIKCLH.zjouBHMNlrhmlaxDSr5ekxBBtZ6TTyzq\",\n    \"next\": \"http://zaaZdhuyWyp.ujnjoXaDlGiU.vw,CJYmc\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.val.town",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c3890252-92d4-4ddb-a4b1-fdaed6911dbf",
+    "name": "Val Town alias telemetry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Val Town’s public API\n\nOpenAPI JSON endpoint:\n\nhttps://api.val.town/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}
