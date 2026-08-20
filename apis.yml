@@ -68,6 +68,10 @@ apis:
   baseURL: https://api.val.town/v3/mcp
   tags:
   - MCP
+  - Artificial Intelligence
+  - LLM
+  tags_raw:
+  - MCP
   - AI
   - LLM
   - Model Context Protocol
@@ -89,6 +93,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Alias
+  tags_raw:
   - alias
   properties:
   - type: OpenAPI
@@ -101,6 +107,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Blobs
+  tags_raw:
   - blobs
   properties:
   - type: OpenAPI
@@ -113,6 +121,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Connections
+  tags_raw:
   - connections
   properties:
   - type: OpenAPI
@@ -125,6 +135,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Emails
+  tags_raw:
   - emails
   properties:
   - type: OpenAPI
@@ -137,6 +149,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - File
+  tags_raw:
   - files
   properties:
   - type: OpenAPI
@@ -152,6 +166,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Me
+  tags_raw:
   - me
   properties:
   - type: OpenAPI
@@ -164,6 +180,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Organization
+  tags_raw:
   - orgs
   properties:
   - type: OpenAPI
@@ -176,6 +194,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - SQLite
+  tags_raw:
   - sqlite
   properties:
   - type: OpenAPI
@@ -188,6 +208,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - Telemetry
+  tags_raw:
   - telemetry
   properties:
   - type: OpenAPI
@@ -200,6 +222,8 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
