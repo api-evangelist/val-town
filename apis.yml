@@ -107,7 +107,7 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
-  - Alias
+  - alias
   tags_raw:
   - alias
   properties:
@@ -121,7 +121,7 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
-  - Blobs
+  - blobs
   tags_raw:
   - blobs
   properties:
@@ -194,7 +194,7 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
-  - Organization
+  - orgs
   tags_raw:
   - orgs
   properties:
@@ -208,7 +208,7 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
-  - SQLite
+  - sqlite
   tags_raw:
   - sqlite
   properties:
