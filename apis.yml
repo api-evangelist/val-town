@@ -149,7 +149,7 @@ apis:
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
   tags:
-  - Emails
+  - Email
   tags_raw:
   - emails
   properties:
