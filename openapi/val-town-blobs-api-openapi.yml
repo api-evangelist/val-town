@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias blobs API
+  title: Val Town Blobs API
   description: 'Val Town’s public API
 
 
@@ -14,14 +14,14 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: blobs
+- name: Blobs
   description: Blobs
 paths:
   /v1/blob:
     get:
       operationId: v1blobsList
       tags:
-      - blobs
+      - Blobs
       description: List blobs in your account
       parameters:
       - schema:
@@ -57,11 +57,13 @@ paths:
               - key: hello_world
                 size: 20
                 lastModified: '2024-06-24T20:00:59.702Z'
+      summary: V1blobs list
+      x-summary-source: derived
   /v1/blob/{key}:
     get:
       operationId: v1blobsGet
       tags:
-      - blobs
+      - Blobs
       description: Get a blob’s contents.
       parameters:
       - schema:
@@ -80,10 +82,12 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: V1blobs get
+      x-summary-source: derived
     post:
       operationId: v1blobsStore
       tags:
-      - blobs
+      - Blobs
       description: Store data in blob storage
       requestBody:
         required: true
@@ -127,10 +131,12 @@ paths:
                     type: string
                   message:
                     type: string
+      summary: V1blobs store
+      x-summary-source: derived
     delete:
       operationId: v1blobsDelete
       tags:
-      - blobs
+      - Blobs
       description: Delete a blob
       parameters:
       - schema:
@@ -146,11 +152,13 @@ paths:
       responses:
         '204':
           description: Blob successfully deleted
+      summary: V1blobs delete
+      x-summary-source: derived
   /v2/blob:
     get:
       operationId: v2blobsList
       tags:
-      - blobs
+      - Blobs
       description: List blobs in your account
       parameters:
       - schema:
@@ -186,11 +194,13 @@ paths:
               - key: hello_world
                 size: 20
                 lastModified: '2024-06-24T20:00:59.702Z'
+      summary: V2blobs list
+      x-summary-source: derived
   /v2/blob/{key}:
     get:
       operationId: v2blobsGet
       tags:
-      - blobs
+      - Blobs
       description: Get a blob’s contents.
       parameters:
       - schema:
@@ -209,10 +219,12 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: V2blobs get
+      x-summary-source: derived
     post:
       operationId: v2blobsStore
       tags:
-      - blobs
+      - Blobs
       description: Store data in blob storage
       requestBody:
         required: true
@@ -256,10 +268,12 @@ paths:
                     type: string
                   message:
                     type: string
+      summary: V2blobs store
+      x-summary-source: derived
     delete:
       operationId: v2blobsDelete
       tags:
-      - blobs
+      - Blobs
       description: Delete a blob
       parameters:
       - schema:
@@ -275,6 +289,8 @@ paths:
       responses:
         '204':
           description: Blob successfully deleted
+      summary: V2blobs delete
+      x-summary-source: derived
 components:
   securitySchemes:
     bearerAuth:

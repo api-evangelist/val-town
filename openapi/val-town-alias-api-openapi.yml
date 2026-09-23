@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias API
+  title: Val Town Alias API
   description: 'Val Town’s public API
 
 
@@ -14,7 +14,7 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: alias
+- name: Alias
   description: 'Many API endpoints
 
     accept IDs instead of user-facing names. The alias
@@ -29,7 +29,7 @@ paths:
     get:
       operationId: aliasUsername
       tags:
-      - alias
+      - Alias
       description: Get basic details about a user, given their username
       parameters:
       - schema:
@@ -45,11 +45,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+      summary: Alias username
+      x-summary-source: derived
   /v2/alias/vals/{username}/{val_name}:
     get:
       operationId: aliasVal2
       tags:
-      - alias
+      - Alias
       description: Get a val
       parameters:
       - schema:
@@ -71,6 +73,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Val'
+      summary: Alias val2
+      x-summary-source: derived
 components:
   schemas:
     User:

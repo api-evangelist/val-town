@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias telemetry API
+  title: Val Town Telemetry API
   description: 'Val Town’s public API
 
 
@@ -14,13 +14,13 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: telemetry
+- name: Telemetry
 paths:
   /v1/telemetry/traces:
     get:
       operationId: traceList
       tags:
-      - telemetry
+      - Telemetry
       description: 'Get OpenTelemetry traces within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Choose to return in end_time order instead to view traces that completed in a window or since a time. Filter additionally by branch_ids or file_id.'
       parameters:
       - schema:
@@ -151,11 +151,13 @@ paths:
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                 description: A paginated result set
+      summary: Trace list
+      x-summary-source: derived
   /v1/telemetry/logs:
     get:
       operationId: logList
       tags:
-      - telemetry
+      - Telemetry
       description: 'Get OpenTelemetry logs within a specified time window with flexible pagination options: Pass in only the end time to paginate backwards from there. Pass in a start time to paginate backwards from now until the start time. Pass in both to get resources within the time window. Filter additionally by branch_ids or file_id.'
       parameters:
       - schema:
@@ -289,6 +291,8 @@ paths:
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                 description: A paginated result set
+      summary: Log list
+      x-summary-source: derived
 components:
   schemas:
     PaginationLinks:

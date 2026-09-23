@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias connections API
+  title: Val Town Connections API
   description: 'Val Town’s public API
 
 
@@ -14,12 +14,12 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: connections
+- name: Connections
 paths:
   /v3/connections/slack/token:
     post:
       tags:
-      - connections
+      - Connections
       description: Get a valid Slack access token for a connected workspace. Automatically refreshes the token if expired.
       requestBody:
         required: true
@@ -80,10 +80,14 @@ paths:
                 properties:
                   error:
                     type: string
+      summary: Create connections slack token
+      x-summary-source: derived
+      operationId: postV3ConnectionsSlackToken
+      x-operation-id-source: derived
   /v3/connections/google-docs/token:
     post:
       tags:
-      - connections
+      - Connections
       description: Get a valid Google access token for a connected Google account. Automatically refreshes the token if expired.
       requestBody:
         required: true
@@ -149,6 +153,10 @@ paths:
                 properties:
                   error:
                     type: string
+      summary: Create connections google docs token
+      x-summary-source: derived
+      operationId: postV3ConnectionsGoogleDocsToken
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

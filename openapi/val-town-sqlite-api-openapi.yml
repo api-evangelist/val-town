@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias sqlite API
+  title: Val Town Sqlite API
   description: 'Val Town’s public API
 
 
@@ -83,6 +83,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResultSet'
+      summary: Sqlite execute
+      x-summary-source: derived
   /v1/sqlite/batch:
     post:
       operationId: sqliteBatch
@@ -163,6 +165,8 @@ paths:
                 - - 1
                 rowsAffected: 0
                 lastInsertRowid: null
+      summary: Sqlite batch
+      x-summary-source: derived
 components:
   schemas:
     ResultSet:

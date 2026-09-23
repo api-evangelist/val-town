@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias orgs API
+  title: Val Town Orgs API
   description: 'Val Town’s public API
 
 
@@ -14,13 +14,13 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: orgs
+- name: Orgs
 paths:
   /v2/orgs:
     get:
       operationId: orgsList
       tags:
-      - orgs
+      - Orgs
       description: Get all orgs you are a member of
       parameters:
       - schema:
@@ -58,11 +58,13 @@ paths:
                   links:
                     $ref: '#/components/schemas/PaginationLinks'
                 description: A paginated result set
+      summary: Orgs list
+      x-summary-source: derived
   /v2/orgs/{org_id}/memberships:
     get:
       operationId: orgsMembershipsList
       tags:
-      - orgs
+      - Orgs
       description: List all memberships of an org
       parameters:
       - schema:
@@ -81,26 +83,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Membership'
+      summary: Orgs memberships list
+      x-summary-source: derived
 components:
   schemas:
-    PaginationLinks:
+    Org:
       type: object
       required:
-      - self
+      - username
+      - id
       properties:
-        self:
+        username:
           type: string
-          format: uri
-          description: URL of this page
-        prev:
+        id:
           type: string
-          format: uri
-          description: URL of the previous page, if any
-        next:
-          type: string
-          format: uri
-          description: URL of the next page, if any
-      description: Links to use for pagination
+          format: uuid
+          description: The id of the org
+      description: An Org
     Membership:
       type: object
       required:
@@ -135,19 +134,24 @@ components:
                 description: The username of the user
               - type: 'null'
       description: A Membership
-    Org:
+    PaginationLinks:
       type: object
       required:
-      - username
-      - id
+      - self
       properties:
-        username:
+        self:
           type: string
-        id:
+          format: uri
+          description: URL of this page
+        prev:
           type: string
-          format: uuid
-          description: The id of the org
-      description: An Org
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
   securitySchemes:
     bearerAuth:
       type: http

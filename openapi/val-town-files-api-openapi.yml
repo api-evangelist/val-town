@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Val Town alias files API
+  title: Val Town Files API
   description: 'Val Town’s public API
 
 
@@ -14,13 +14,13 @@ servers:
 - url: https://api.val.town
   description: Production
 tags:
-- name: files
+- name: Files
 paths:
   /v2/files/{file_id}:
     get:
       operationId: queryValFileById
       tags:
-      - files
+      - Files
       description: Get file metadata by file ID
       parameters:
       - schema:
@@ -37,6 +37,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FileRevisionMetadataV2'
+      summary: Query val file by id
+      x-summary-source: derived
 components:
   schemas:
     FileRevisionMetadataV2:

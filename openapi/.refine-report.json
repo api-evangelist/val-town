@@ -1,17 +1,7 @@
 {
   "provider": "val-town",
   "sources": [
-    "val-town-alias-api-openapi.yml",
-    "val-town-blobs-api-openapi.yml",
-    "val-town-connections-api-openapi.yml",
-    "val-town-emails-api-openapi.yml",
-    "val-town-files-api-openapi.yml",
-    "val-town-me-api-openapi.yml",
-    "val-town-orgs-api-openapi.yml",
-    "val-town-sqlite-api-openapi.yml",
-    "val-town-telemetry-api-openapi.yml",
-    "val-town-users-api-openapi.yml",
-    "val-town-vals-api-openapi.yml"
+    "_original/val-town-rest-api-openapi.yml"
   ],
   "outputs": [
     "val-town-alias-api-openapi.yml",
@@ -29,6 +19,26 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "val-town-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "val-town-rest-api-openapi.yml: declared missing tag: connections",
+    "val-town-rest-api-openapi.yml: declared missing tag: files",
+    "val-town-rest-api-openapi.yml: declared missing tag: orgs",
+    "val-town-rest-api-openapi.yml: declared missing tag: telemetry",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "val-town-alias-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-blobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-emails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-me-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-orgs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-sqlite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-telemetry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "val-town-vals-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

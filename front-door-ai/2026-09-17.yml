@@ -1,0 +1,30 @@
+# Front Door AI Index — val-town — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: val-town
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.val.town
+  final_host: www.val.town
+  ownership: own
+  owner: val-town
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 7
+  host_score: 7
+  density: 26.62
+  words: 263
+  tiers:
+    agentic: 2
+    core: 3
+    model: 2
+  ambiguous: 3
+  top_terms:
+    AI: 3
+    MCP: 2
+    agent: 2
+    Anthropic: 1
+    OpenAI: 1
+    intelligence: 1
