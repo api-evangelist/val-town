@@ -722,7 +722,7 @@ paths:
       x-summary-source: derived
   /v2/vals/{val_id}/environment_variables/{key}:
     put:
-      operationId: valEnvironmentVariablesCreate
+      operationId: putV2ValsByValIdEnvironmentVariablesByKey
       tags:
       - vals
       description: Update a environment variable scoped to this project.
@@ -767,6 +767,8 @@ paths:
                 $ref: '#/components/schemas/TEnvironmentVariable'
       summary: Val environment variables create
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: valEnvironmentVariablesCreate
     delete:
       operationId: valEnvironmentVariablesDelete
       tags:
@@ -880,52 +882,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of this page
-        prev:
-          type: string
-          format: uri
-          description: URL of the previous page, if any
-        next:
-          type: string
-          format: uri
-          description: URL of the next page, if any
-      description: Links to use for pagination
-    TEnvironmentVariable:
-      type: object
-      required:
-      - key
-      - description
-      - updatedAt
-      - createdAt
-      properties:
-        key:
-          type: string
-          maxLength: 8192
-          pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
-          description: Name or key of the environment variable, accessible via Deno.env or process.env
-        description:
-          anyOf:
-          - type: string
-            maxLength: 1024
-            description: Optional description of the environment variable
-          - type: 'null'
-        updatedAt:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-        createdAt:
-          type: string
-          format: date-time
-      description: An environment variable
     Val:
       type: object
       required:
@@ -999,6 +955,24 @@ components:
               format: uri
               description: The URL of this resource on Val Town
       description: A Val
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
     Branch:
       type: object
       required:
@@ -1106,6 +1080,34 @@ components:
               format: email
               description: This resource's email address for receiving emails (for email-type vals)
       description: A File or Directory's Metadata
+    TEnvironmentVariable:
+      type: object
+      required:
+      - key
+      - description
+      - updatedAt
+      - createdAt
+      properties:
+        key:
+          type: string
+          maxLength: 8192
+          pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
+          description: Name or key of the environment variable, accessible via Deno.env or process.env
+        description:
+          anyOf:
+          - type: string
+            maxLength: 1024
+            description: Optional description of the environment variable
+          - type: 'null'
+        updatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+        createdAt:
+          type: string
+          format: date-time
+      description: An environment variable
   securitySchemes:
     bearerAuth:
       type: http

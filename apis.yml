@@ -93,7 +93,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/
 - aid: val-town:val-town-alias-api
-  name: Val Town alias API
+  name: Val Town Alias API
   description: >-
     Many API endpoints
 
@@ -116,7 +116,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-blobs-api
-  name: Val Town blobs API
+  name: Val Town Blobs API
   description: Blobs
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -130,7 +130,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-connections-api
-  name: Val Town connections API
+  name: Val Town Connections API
   description: The connections API from Val Town — 2 operation(s) for connections.
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -144,7 +144,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-emails-api
-  name: Val Town emails API
+  name: Val Town Emails API
   description: Emails
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -158,7 +158,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-files-api
-  name: Val Town files API
+  name: Val Town Files API
   description: The files API from Val Town — 1 operation(s) for files.
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -172,7 +172,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-me-api
-  name: Val Town me API
+  name: Val Town Me API
   description: >-
     These endpoints
 
@@ -189,7 +189,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-orgs-api
-  name: Val Town orgs API
+  name: Val Town Orgs API
   description: The orgs API from Val Town — 2 operation(s) for orgs.
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -203,7 +203,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-sqlite-api
-  name: Val Town sqlite API
+  name: Val Town Sqlite API
   description: SQLite
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -217,7 +217,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-telemetry-api
-  name: Val Town telemetry API
+  name: Val Town Telemetry API
   description: The telemetry API from Val Town — 2 operation(s) for telemetry.
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -231,7 +231,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-users-api
-  name: Val Town users API
+  name: Val Town Users API
   description: Users
   humanURL: https://docs.val.town/reference/api/
   baseURL: https://api.val.town
@@ -245,7 +245,7 @@ apis:
   - type: Documentation
     url: https://docs.val.town/reference/api/
 - aid: val-town:val-town-vals-api
-  name: Val Town vals API
+  name: Val Town Vals API
   description: >-
     These endpoints
 
