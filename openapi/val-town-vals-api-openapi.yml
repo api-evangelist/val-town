@@ -882,79 +882,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Val:
-      type: object
-      required:
-      - name
-      - id
-      - createdAt
-      - privacy
-      - author
-      - imageUrl
-      - description
-      - links
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-          format: uuid
-          description: The id of the val
-        createdAt:
-          type: string
-          format: date-time
-        privacy:
-          enum:
-          - public
-          - unlisted
-          - private
-          description: This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them.
-        author:
-          type: object
-          required:
-          - type
-          - id
-          - username
-          properties:
-            type:
-              anyOf:
-              - type: string
-                enum:
-                - user
-              - type: string
-                enum:
-                - org
-            id:
-              type: string
-              format: uuid
-            username:
-              anyOf:
-              - type: string
-              - type: 'null'
-        imageUrl:
-          anyOf:
-          - type: string
-            description: The URL of this val's image
-          - type: 'null'
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-        links:
-          type: object
-          required:
-          - self
-          - html
-          properties:
-            self:
-              type: string
-              format: uri
-              description: The URL of this resource on this API
-            html:
-              type: string
-              format: uri
-              description: The URL of this resource on Val Town
-      description: A Val
     PaginationLinks:
       type: object
       required:
@@ -973,52 +900,6 @@ components:
           format: uri
           description: URL of the next page, if any
       description: Links to use for pagination
-    Branch:
-      type: object
-      required:
-      - name
-      - id
-      - version
-      - createdAt
-      - updatedAt
-      - forkedBranchId
-      - links
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-          format: uuid
-          description: The id of the branch
-        version:
-          type: integer
-          minimum: 0
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        forkedBranchId:
-          anyOf:
-          - type: string
-            description: The id of the branch this branch was forked from
-          - type: 'null'
-        links:
-          type: object
-          required:
-          - self
-          - html
-          properties:
-            self:
-              type: string
-              format: uri
-              description: The URL of this resource on this API
-            html:
-              type: string
-              format: uri
-              description: The URL of this resource on Val Town
-      description: A Branch
     FileRevisionMetadataV2:
       type: object
       required:
@@ -1108,6 +989,125 @@ components:
           type: string
           format: date-time
       description: An environment variable
+    Branch:
+      type: object
+      required:
+      - name
+      - id
+      - version
+      - createdAt
+      - updatedAt
+      - forkedBranchId
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the branch
+        version:
+          type: integer
+          minimum: 0
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        forkedBranchId:
+          anyOf:
+          - type: string
+            description: The id of the branch this branch was forked from
+          - type: 'null'
+        links:
+          type: object
+          required:
+          - self
+          - html
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+      description: A Branch
+    Val:
+      type: object
+      required:
+      - name
+      - id
+      - createdAt
+      - privacy
+      - author
+      - imageUrl
+      - description
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the val
+        createdAt:
+          type: string
+          format: date-time
+        privacy:
+          enum:
+          - public
+          - unlisted
+          - private
+          description: This resource's privacy setting. Unlisted resources do not appear on profile pages or elsewhere, but you can link to them.
+        author:
+          type: object
+          required:
+          - type
+          - id
+          - username
+          properties:
+            type:
+              anyOf:
+              - type: string
+                enum:
+                - user
+              - type: string
+                enum:
+                - org
+            id:
+              type: string
+              format: uuid
+            username:
+              anyOf:
+              - type: string
+              - type: 'null'
+        imageUrl:
+          anyOf:
+          - type: string
+            description: The URL of this val's image
+          - type: 'null'
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+        links:
+          type: object
+          required:
+          - self
+          - html
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+      description: A Val
   securitySchemes:
     bearerAuth:
       type: http

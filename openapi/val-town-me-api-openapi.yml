@@ -109,24 +109,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of this page
-        prev:
-          type: string
-          format: uri
-          description: URL of the previous page, if any
-        next:
-          type: string
-          format: uri
-          description: URL of the next page, if any
-      description: Links to use for pagination
     User:
       type: object
       required:
@@ -256,6 +238,24 @@ components:
               format: uri
               description: The URL of this resource on Val Town
       description: A Val
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
   securitySchemes:
     bearerAuth:
       type: http
