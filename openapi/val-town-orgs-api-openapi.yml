@@ -100,6 +100,24 @@ components:
           format: uuid
           description: The id of the org
       description: An Org
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
     Membership:
       type: object
       required:
@@ -134,24 +152,6 @@ components:
                 description: The username of the user
               - type: 'null'
       description: A Membership
-    PaginationLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of this page
-        prev:
-          type: string
-          format: uri
-          description: URL of the previous page, if any
-        next:
-          type: string
-          format: uri
-          description: URL of the next page, if any
-      description: Links to use for pagination
   securitySchemes:
     bearerAuth:
       type: http
