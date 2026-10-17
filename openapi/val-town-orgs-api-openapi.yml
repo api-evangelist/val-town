@@ -87,19 +87,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Org:
-      type: object
-      required:
-      - username
-      - id
-      properties:
-        username:
-          type: string
-        id:
-          type: string
-          format: uuid
-          description: The id of the org
-      description: An Org
     PaginationLinks:
       type: object
       required:
@@ -152,6 +139,19 @@ components:
                 description: The username of the user
               - type: 'null'
       description: A Membership
+    Org:
+      type: object
+      required:
+      - username
+      - id
+      properties:
+        username:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the org
+      description: An Org
   securitySchemes:
     bearerAuth:
       type: http

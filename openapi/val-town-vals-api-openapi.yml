@@ -882,6 +882,95 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    TEnvironmentVariable:
+      type: object
+      required:
+      - key
+      - description
+      - updatedAt
+      - createdAt
+      properties:
+        key:
+          type: string
+          maxLength: 8192
+          pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
+          description: Name or key of the environment variable, accessible via Deno.env or process.env
+        description:
+          anyOf:
+          - type: string
+            maxLength: 1024
+            description: Optional description of the environment variable
+          - type: 'null'
+        updatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+        createdAt:
+          type: string
+          format: date-time
+      description: An environment variable
+    FileRevisionMetadataV2:
+      type: object
+      required:
+      - name
+      - id
+      - path
+      - version
+      - updatedAt
+      - type
+      - links
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+          format: uuid
+          description: The id of the resource
+        path:
+          type: string
+        version:
+          type: integer
+          minimum: 0
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          enum:
+          - directory
+          - file
+          - interval
+          - http
+          - email
+          - script
+        links:
+          type: object
+          required:
+          - self
+          - html
+          - module
+          properties:
+            self:
+              type: string
+              format: uri
+              description: The URL of this resource on this API
+            html:
+              type: string
+              format: uri
+              description: The URL of this resource on Val Town
+            module:
+              type: string
+              format: uri
+              description: The URL of this resource's source code as a module
+            endpoint:
+              type: string
+              format: uri
+              description: This resource's web endpoint, where it serves a website or API
+            email:
+              type: string
+              format: email
+              description: This resource's email address for receiving emails (for email-type vals)
+      description: A File or Directory's Metadata
     Branch:
       type: object
       required:
@@ -928,6 +1017,24 @@ components:
               format: uri
               description: The URL of this resource on Val Town
       description: A Branch
+    PaginationLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of this page
+        prev:
+          type: string
+          format: uri
+          description: URL of the previous page, if any
+        next:
+          type: string
+          format: uri
+          description: URL of the next page, if any
+      description: Links to use for pagination
     Val:
       type: object
       required:
@@ -1001,113 +1108,6 @@ components:
               format: uri
               description: The URL of this resource on Val Town
       description: A Val
-    FileRevisionMetadataV2:
-      type: object
-      required:
-      - name
-      - id
-      - path
-      - version
-      - updatedAt
-      - type
-      - links
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-          format: uuid
-          description: The id of the resource
-        path:
-          type: string
-        version:
-          type: integer
-          minimum: 0
-        updatedAt:
-          type: string
-          format: date-time
-        type:
-          enum:
-          - directory
-          - file
-          - interval
-          - http
-          - email
-          - script
-        links:
-          type: object
-          required:
-          - self
-          - html
-          - module
-          properties:
-            self:
-              type: string
-              format: uri
-              description: The URL of this resource on this API
-            html:
-              type: string
-              format: uri
-              description: The URL of this resource on Val Town
-            module:
-              type: string
-              format: uri
-              description: The URL of this resource's source code as a module
-            endpoint:
-              type: string
-              format: uri
-              description: This resource's web endpoint, where it serves a website or API
-            email:
-              type: string
-              format: email
-              description: This resource's email address for receiving emails (for email-type vals)
-      description: A File or Directory's Metadata
-    TEnvironmentVariable:
-      type: object
-      required:
-      - key
-      - description
-      - updatedAt
-      - createdAt
-      properties:
-        key:
-          type: string
-          maxLength: 8192
-          pattern: ^[A-Za-z_][A-Z0-9a-z_]*$
-          description: Name or key of the environment variable, accessible via Deno.env or process.env
-        description:
-          anyOf:
-          - type: string
-            maxLength: 1024
-            description: Optional description of the environment variable
-          - type: 'null'
-        updatedAt:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-        createdAt:
-          type: string
-          format: date-time
-      description: An environment variable
-    PaginationLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of this page
-        prev:
-          type: string
-          format: uri
-          description: URL of the previous page, if any
-        next:
-          type: string
-          format: uri
-          description: URL of the next page, if any
-      description: Links to use for pagination
   securitySchemes:
     bearerAuth:
       type: http
